@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode随你做</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            color: #333;
+            /*background-color: #f0f0f0; !* 添加背景色 *!*/
+            padding: 10px; /* 添加内边距 */
+            margin: 0; /* 将标题的外边距设为 0 */
+        }
+
+        p {
+            color: #666;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px auto; /* 居中并且与标题、内容区域保持 2 行距离 */
+            display: block; /* 将按钮转换为块级元素 */
+        }
+
+        button:focus {
+            outline: none; /* 移除按钮点击时的外边框 */
+        }
+
+        /* 图像自适应样式 */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* pre 标签样式 */
+        pre {
+            overflow-x: auto; /* 当文本超出时出现横向滚动条 */
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #content {
+            background-color: #f0f0f0; /* 添加背景色 */
+        }
+
+        #params {
+            background-color: #d3b9bc; /* 添加背景颜色 */
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block; /* 修改为 inline-block */
+            margin-bottom: 20px;
+        }
+
+        /* 添加媒体查询以适应移动端 */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <button id="refreshButton">随机一题</button>
+            <!-- 新增的显示区域 -->
+    <div id="params"></div>
+    <h1>【{{ translated_title }}】</h1>
+    <div id="content">{{ translated_content | safe }}</div>
+</div>
+
+<script>
+    // 获取显示区域的 DOM 元素
+    var paramsDiv = document.getElementById("params");
+
+    // 获取当前页面的参数并显示在显示区域中
+    var urlParams = new URLSearchParams(window.location.search);
+    var p = urlParams.get('p');
+    var q = urlParams.get('q');
+    if (p === null || q === null) {
+        p = 1;
+        q = 1;
+    }
+    if (p === 0 ) {
+        p = 1;
+    }
+
+    if (q === 0) {
+        q = 1;
+    }
+    paramsDiv.textContent = "第" + p + "页，第" + q + "题"
+
+    // 获取刷新按钮的 DOM 元素
+    var refreshButton = document.getElementById("refreshButton");
+
+    // 当按钮被点击时执行的函数
+    refreshButton.onclick = function() {
+        // 生成随机的 p 和 q 参数
+        var p = Math.floor(Math.random() * 3397);
+        var q = Math.floor(Math.random() * 49);
+
+        // 刷新页面并携带参数
+        window.location.href = window.location.pathname + "?p=" + p + "&q=" + q;
+    };
+</script>
+</body>
+</html>
