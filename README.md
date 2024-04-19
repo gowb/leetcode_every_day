@@ -4,7 +4,7 @@ Every single day For You Coding!!!
 
 ## 示例地址 👇
 
-[示例地址，点我访问](code.68.rs)
+[示例地址，点我访问](https://code.68.rs)
 
 # 使用Docker快速部署LeetCode刷题环境
 ## 快速开始
